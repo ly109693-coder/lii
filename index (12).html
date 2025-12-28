@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trò chơi chọn đáp án</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fef6f6;
+            text-align: center;
+            padding-top: 50px;
+            overflow: hidden; /* Tránh hiện thanh cuộn khi nút nhảy */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #ff4d6d;
+        }
+
+        /* Vùng chứa sticker */
+        #sticker-container {
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        #sticker {
+            width: 150px;
+            display: none; /* Ẩn lúc đầu, hiện khi bấm nút */
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            transition: 0.2s;
+        }
+
+        #sai {
+            background-color: #ffb3c1;
+            color: white;
+        }
+
+        #sai:hover {
+            background-color: #ff758f;
+        }
+
+        #dung {
+            position: absolute;
+            background-color: #a2d2ff;
+            color: white;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 22px;
+            color: #d60000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sticker-container">
+        <img id="sticker" src="" alt="cute sticker">
+    </div>
+
+    <h1>❓ bè ghéc lii đúng hong</h1>
+
+    <button id="sai">đúm rùi</button>
+    <button id="dung">hong có</button>
+
+    <div id="message"></div>
+
+    <script>
+        const dungBtn = document.getElementById("dung");
+        const saiBtn = document.getElementById("sai");
+        const message = document.getElementById("message");
+        const sticker = document.getElementById("sticker");
+
+        // Danh sách sticker cute (GIF)
+        const stickers = [
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/3oriO0OEdcRldUXCi4/giphy.gif",
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/L40pD0XU4Y8v6/giphy.gif",
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/5GoVLqeAOo6PK/giphy.gif",
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4bmZ4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/MDJ9IbM2yiuzU92wLz/giphy.gif"
+        ];
+
+        // Né chuột khi rê vào nút "Hong có"
+        dungBtn.addEventListener("mouseover", () => {
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 100);
+            dungBtn.style.left = x + "px";
+            dungBtn.style.top = y + "px";
+        });
+
+        // Khi bấm "Đúm rùi"
+        saiBtn.addEventListener("click", () => {
+            const texts = [
+                "😒 Biết ngay mà!",
+                "🙄 Tui bùn bè quớ ",
+                " huhuhu!",
+                "🤡 Thôi khỏi chối, tui bít hết gòi!",
+                "😏 thui thì Ít ra bè còn xíu trung thực"
+            ];
+
+            // Hiển thị chữ ngẫu nhiên
+            const randomText = texts[Math.floor(Math.random() * texts.length)];
+            message.innerText = randomText;
+
+            // Hiển thị sticker ngẫu nhiên
+            const randomSticker = stickers[Math.floor(Math.random() * stickers.length)];
+            sticker.src = randomSticker;
+            sticker.style.display = "inline-block";
+        });
+    </script>
+
+</body>
+</html>
